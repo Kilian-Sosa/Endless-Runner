@@ -4,12 +4,21 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] float jumpForce;
     private Rigidbody rb;
+    private bool isJumping;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
+        isJumping = false;
     }
 
     void Update() {
-        if (Input.GetButtonDown("Jump")) rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        if (Input.GetButtonDown("Jump") && !isJumping) {
+            rb.AddForce(transform.forward * jumpForce, ForceMode.Impulse);
+            isJumping = true;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag("Ground")) isJumping = false;
     }
 }
