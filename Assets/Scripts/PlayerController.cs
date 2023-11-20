@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         if (Input.GetButtonDown("Jump") && !isJumping) {
-            rb.AddForce(transform.forward * jumpForce, ForceMode.Impulse);
+            rb.AddForce(transform.forward * jumpForce, ForceMode.Impulse); //transform.forward because the model is rotated
             isJumping = true;
         }
     }
