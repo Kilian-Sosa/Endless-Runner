@@ -20,5 +20,11 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Ground")) isJumping = false;
+        if (collision.gameObject.CompareTag("Enemy")) {
+            foreach (ContactPoint contact in collision.contacts) {
+                if (contact.normal.y > 0.8f) GameManager.instance.Invoke("AddPoint", 2);
+                else GameManager.instance.Invoke("FinishGame", 0);
+            }
+        }
     }
 }
