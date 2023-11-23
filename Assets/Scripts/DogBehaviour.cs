@@ -21,7 +21,8 @@ public class DogBehaviour : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        GameManager.instance.enemySpeed *= 1.2f;
+        if (GameManager.instance.enemySpeed < 16f && (GameManager.instance.score + 1) % 5 == 0)
+            GameManager.instance.enemySpeed *= 1.2f;
         GameManager.instance.AddPoint();
     }
 

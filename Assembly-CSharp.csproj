@@ -60,7 +60,6 @@
     <Compile Include="Assets\Scripts\DogBehaviour.cs" />
     <Compile Include="Assets\Scripts\ParallaxMotion.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\RotateFox.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
   </ItemGroup>

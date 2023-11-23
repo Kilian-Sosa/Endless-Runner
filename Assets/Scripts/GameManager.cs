@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public GameObject player, enemy;
     public float enemySpeed;
-    private float score;
+    public float score;
 
     void Start() {
         instance = this;
