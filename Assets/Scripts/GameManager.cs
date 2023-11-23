@@ -5,12 +5,10 @@ using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public GameObject player, enemy;
-    [SerializeField] float enemySpeed;
     private float score;
 
     void Start() {
         instance = this;
-        Instantiate(player, new Vector3(-6f, -3.5f), Quaternion.identity);
     }
 
     void Update() {
@@ -35,11 +33,11 @@ public class GameManager : MonoBehaviour {
     }
 
     public void AddPoint() {
-        print(score++);
-        // Increase score
+        print($"Score {++score}");
+        //GameObject.Find("Score").GetComponent<TMP_Text>().text = score.ToString();
     }
 
     public void FinishGame() {
-        Destroy(GameObject.Find("Player"));
+        Destroy(player.gameObject);
     }
 }
