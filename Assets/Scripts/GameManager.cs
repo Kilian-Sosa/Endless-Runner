@@ -6,16 +6,15 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public GameObject player, enemy;
     [SerializeField] float enemySpeed;
+    private float score;
 
     void Start() {
         instance = this;
         Instantiate(player, new Vector3(-6f, -3.5f), Quaternion.identity);
-        SpawnEnemy();
     }
 
     void Update() {
         if (player == null) return;
-        if (enemy.transform.position.x < (player.transform.position.x - 3)) AddPoint();
 
         //if
         //if (ball.transform.position.x > rightBarrier.transform.position.x) {
@@ -29,19 +28,18 @@ public class GameManager : MonoBehaviour {
         //}
     }
 
-    private void SpawnEnemy() {
+    public void Spawn() {
         float positionY = Random.Range((float)-3.5, (float)1.35);
         Vector3 dogPosition = new Vector3(16f, positionY, 0f);
-        Instantiate(enemy, dogPosition, Quaternion.identity);
+        Instantiate(enemy, dogPosition, Quaternion.Euler(-90, -90, 0));
     }
 
     public void AddPoint() {
-        Destroy(enemy);
+        print(score++);
         // Increase score
-        SpawnEnemy();
     }
 
     public void FinishGame() {
-        Destroy(player);
+        Destroy(GameObject.Find("Player"));
     }
 }
