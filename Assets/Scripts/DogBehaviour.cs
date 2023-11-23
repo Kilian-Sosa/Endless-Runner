@@ -1,19 +1,14 @@
 using UnityEngine;
 
 public class DogBehaviour : MonoBehaviour {
-    private float speed;
 
-    void Start() {
-        speed = 5;
-    }
 
     // Update is called once per frame
     void Update() {
         if (GameManager.instance.player == null) return;
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-            GetComponent<Rigidbody>().velocity = Vector2.left * speed;
-        else
-            GetComponent<Rigidbody>().velocity = Vector2.zero;
+            GetComponent<Rigidbody>().velocity = Vector2.left * GameManager.instance.enemySpeed;
+        else GetComponent<Rigidbody>().velocity = Vector2.zero;
     }
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Ground")) return;
@@ -26,7 +21,7 @@ public class DogBehaviour : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        speed *= 1.5f;
+        GameManager.instance.enemySpeed *= 1.2f;
         GameManager.instance.AddPoint();
     }
 
